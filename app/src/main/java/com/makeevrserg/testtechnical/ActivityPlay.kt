@@ -117,15 +117,14 @@ class ActivityPlay : AppCompatActivity() {
             crossfadePlayer!!.addMediaItem(mediaItem)
 
         crossfadePlayer!!.repeatMode = Player.REPEAT_MODE_ALL
-        crossfadePlayer!!.prepare()
         player!!.repeatMode = Player.REPEAT_MODE_ALL
-        player!!.prepare()
 
 
         ImageButtonPlayStop.setOnClickListener {
             if (player!!.isPlaying) {
                 StopPlayer()
             } else {
+                player!!.prepare()
                 player!!.play()
                 InitCrossfade()
                 ImageButtonPlayStop.setImageDrawable(
@@ -149,6 +148,8 @@ class ActivityPlay : AppCompatActivity() {
             handler!!.removeCallbacksAndMessages(null)
         player!!.pause()
         player!!.next()
+        player!!.volume = 1.0f
+        crossfadePlayer!!.volume = 1.0f
         crossfadePlayer!!.pause()
         crossfadePlayer!!.next()
         ImageButtonPlayStop.setImageDrawable(
@@ -183,12 +184,14 @@ class ActivityPlay : AppCompatActivity() {
 
                 if (toEnd < 5000 && player!!.isPlaying) {
                     if (!crossfadePlayer!!.isPlaying) {
+                        crossfadePlayer!!.prepare()
                         crossfadePlayer!!.play()
                     }
                     val mSound: Float = (1.0f - (toEnd.toFloat() / (5000)))
                     crossfadePlayer!!.volume = mSound
                     player!!.volume = 1.0f - mSound
                 }
+                Log.d(TAG, "run: toEnd=${toEnd}")
                 if (toEnd < 500) {
                     Log.d(TAG, "run: ToEnd<500")
                     val oldCrossfade = crossfadePlayer
