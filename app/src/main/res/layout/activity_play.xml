@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:id="@+id/linearLayout">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPlay"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Плейлист" />
+
+
+
+
+    <TextView
+        android:id="@+id/textViewCurrentSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ImageButtonPlayStop"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#215BBF"
+        android:layout_marginBottom="20dp"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/ImageButtonPlayStop"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:scaleType="fitCenter"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/ic_play" />
+</RelativeLayout>
