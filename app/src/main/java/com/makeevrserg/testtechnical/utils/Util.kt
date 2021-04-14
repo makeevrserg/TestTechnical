@@ -5,12 +5,14 @@ import android.os.Environment
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
+import java.net.ConnectException
 import java.net.URL
 import java.net.URLConnection
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.security.MessageDigest
 import java.sql.Time
+import javax.net.ssl.SSLHandshakeException
 
 enum class enumDays(val day: String) {
     MONDAY("Понедельник"),
@@ -53,14 +55,23 @@ class Playlist(cacheDir: String, json: JSONObject) : Serializable {
             val jF: jFile = jFile(file as JSONObject)
             try {
                 jF.broken = !download(cacheDir, jF)
-                if (!hasBroken)
-                    hasBroken = jF.broken
                 println("File ${jF.name} broken=${hasBroken}")
 
             } catch (e: FileNotFoundException) {//В некоторых файлах из json-файлы не было файлов
                 e.printStackTrace()
                 //e.printStackTrace()
+            } catch (e: ConnectException) {
+                jF.broken = true
+            } catch (e:SSLHandshakeException){
+                jF.broken = true
+            } catch (e:IOException){
+                jF.broken = true
+            } catch (e:EOFException){
+                jF.broken = true
             }
+            if (!hasBroken)
+                hasBroken = jF.broken
+
             if (!jF.broken) {
                 fileById[jF.id] = jF
                 files.add(jF)
@@ -155,7 +166,7 @@ fun download(cacheDir: String, file: jFile): Boolean {
     val connection: URLConnection = url.openConnection()
     connection.connect()
     var fileLength = connection.contentLength
-    val iStream: InputStream = BufferedInputStream(url.openStream(), 1024)
+    val iStream: InputStream = BufferedInputStream(url.openStream(), fileLength)
     val oStream: OutputStream =
         FileOutputStream(cacheDir + "/" + file.name)
     val data: ByteArray = ByteArray(1024)

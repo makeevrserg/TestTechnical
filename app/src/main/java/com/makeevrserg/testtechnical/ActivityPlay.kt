@@ -63,9 +63,9 @@ class ActivityPlay : AppCompatActivity() {
             this.finish()
             return
         }
-
-        playlistMap = playlistMap.toList().sortedBy { (_, value) -> value }.reversed()
-            .toMap() as HashMap<Int, Int>
+        if (playlistMap.size > 1)
+            playlistMap = playlistMap.toList().sortedBy { (_, value) -> value }.reversed()
+                .toMap() as HashMap<Int, Int>
         println(playlistMap)
         setSupportActionBar(toolbarPlay)
         toolbarPlay.title = profile.playlistById[playlistMap.keys.elementAt(0)]!!.name
@@ -99,7 +99,9 @@ class ActivityPlay : AppCompatActivity() {
 
                 val jsonTag = JSONObject()
                 val mediaItem: MediaItem =
-                    MediaItem.Builder().setUri(path[0]).setMediaId(profile.playlistById[plst.id]!!.name).setMediaMetadata(MediaMetadata.Builder().setTitle(path[1]).build())
+                    MediaItem.Builder().setUri(path[0])
+                        .setMediaId(profile.playlistById[plst.id]!!.name)
+                        .setMediaMetadata(MediaMetadata.Builder().setTitle(path[1]).build())
                         .build()
                 mediaPlayerItems.add(mediaItem)
                 player!!.addMediaItem(
@@ -138,10 +140,11 @@ class ActivityPlay : AppCompatActivity() {
         }
     }
 
-    fun ChangeText(){
+    fun ChangeText() {
         textViewCurrentSong.text = player!!.currentMediaItem!!.mediaMetadata.title
         toolbarPlay.title = player!!.currentMediaItem!!.mediaId
     }
+
     fun StopPlayer() {
 
         if (handler != null)
