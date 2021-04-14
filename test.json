@@ -138,7 +138,7 @@
         "timeZones": [
           {
             "from": "6:30",
-            "to": "22:30",
+            "to": "23:59",
             "playlists": [
               {
                 "playlist_id": 1632,
@@ -152,7 +152,7 @@
           },		  
           {
             "from": "18:45",
-            "to": "23:45",
+            "to": "23:59",
             "playlists": [
               {
                 "playlist_id": 1633,
@@ -166,7 +166,7 @@
         "day": "thursday",
         "timeZones": [
           {
-            "from": "7:45",
+            "from": "0:00",
             "to": "13:45",
             "playlists": [
               {
