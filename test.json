@@ -1,0 +1,229 @@
+{
+  "id": 1638,
+  "name": "Test Profile",  
+  "schedule": {
+    "playlists": [
+      {
+        "id": 288,
+        "name": "Roma1",
+        "files": [
+          {
+            "id": 9499,
+            "file_name": "https://api-test-vision.cubicservice.ru/storage/temp/20201023_1343_1397.mp3",
+            "name": "Цой2.mp3",
+            "size": 537198,
+            "md5_file": "593a768e36523b6b2f38848ed3db1970",
+            "duration": 13400,
+            "order": 0 
+          },
+          {
+            "id": 9498,
+            "file_name": "https://empireprojekt.ru/Cropped/AbleSisters.mp3",
+            "name": "AbleSisters.mp3",
+            "size": 240621,
+            "md5_file": "1afe38b195cfb0268faa490e6385b0d9",
+            "duration": 11258,
+            "order": 1
+          },
+          {
+            "id": 9497,
+            "file_name": "https://empireprojekt.ru/Cropped/BatlTheater.mp3",
+            "name": "BatlTheater.mp3",
+            "size": 240997,
+            "md5_file": "095bb56aef59671149dbd85804856e6c",
+            "duration": 16404,
+            "order": 2
+          },
+          {
+            "id": 9496,
+            "file_name": "https://empireprojekt.ru/Cropped/Birthday.mp3",
+            "name": "Birthday.mp3",
+            "size": 240997,
+            "md5_file": "775114a2a6fd43a40a4a158615347446",
+            "duration": 11859,
+            "order": 3
+          }
+        ],
+        "duration": 52921,
+        "random": true
+      },
+      {
+        "id": 1632,
+        "name": "Roma2",
+        "files": [
+          {
+            "id": 9500,
+            "file_name": "https://empireprojekt.ru/Cropped/itouJunji.mp3",
+            "name": "itouJunji.mp3",
+            "size": 240997,
+            "md5_file": "a7cf03598f8be414755d4b342a46ddcf",
+            "duration": 11128,
+            "order": 0
+          }
+        ],
+        "duration": 11128,
+        "random": true
+      },
+      {
+        "id": 1633,
+        "name": "Roma3",
+        "files": [
+          {
+            "id": 9495,
+            "file_name": "https://empireprojekt.ru/Cropped/Leaves.mp3",
+            "name": "Leaves.mp3",
+            "size": 240997,
+            "md5_file": "a0a38515baba08e043f85f4f1de08c83",
+            "duration": 18181,
+            "order": 0
+          },
+          {
+            "id": 9494,
+            "file_name": "https://empireprojekt.ru/Cropped/MainTheme.mp3",
+            "name": "MainTheme.mp3",
+            "size": 240997,
+            "md5_file": "322ab1429a961c38d3eefa2f0e5f74b8",
+            "duration": 12512,
+            "order": 1
+          },
+          {
+            "id": 9493,
+            "file_name": "https://empireprojekt.ru/Cropped/OuterSpace.mp3",
+            "name": "OuterSpace.mp3",
+            "size": 240997,
+            "md5_file": "f893911517fc093682f8e1dffc71c807",
+            "duration": 15386,
+            "order": 2
+          },
+          {
+            "id": 9492,
+            "file_name": "https://empireprojekt.ru/Cropped/ReadyToDie.mp3",
+            "name": "ReadyToDie.mp3",
+            "size": 240997,
+            "md5_file": "cd78b116246f7a1052cf1341fe5ebbb9",
+            "duration": 18625,
+            "order": 3
+          }
+        ],
+        "duration": 64704,
+        "random": true
+      }
+    ],
+    "days": [
+      {
+        "day": "monday",
+        "timeZones": [
+          {
+            "from": "6:15",
+            
+            "to": "22:15",
+            
+            "playlists": [
+              {
+                "playlist_id": 288,
+                "proportion": 1
+                
+              }
+            ]
+            
+          }
+        ]
+      },
+      {
+        "day": "tuesday",
+        "timeZones": []
+      },
+      {
+        "day": "wednesday",
+        "timeZones": [
+          {
+            "from": "6:30",
+            "to": "22:30",
+            "playlists": [
+              {
+                "playlist_id": 1632,
+                "proportion": 1
+              },
+              {
+                "playlist_id": 288,
+                "proportion": 3
+              }
+            ]
+          },		  
+          {
+            "from": "18:45",
+            "to": "23:45",
+            "playlists": [
+              {
+                "playlist_id": 1633,
+                "proportion": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": "thursday",
+        "timeZones": [
+          {
+            "from": "7:45",
+            "to": "13:45",
+            "playlists": [
+              {
+                "playlist_id": 1633,
+                "proportion": 1
+              }
+            ]
+          },
+          {
+            "from": "13:45",
+            "to": "17:15",
+            "playlists": [
+              {
+                "playlist_id": 288,
+                "proportion": 1
+              },
+              {
+                "playlist_id": 1633,
+                "proportion": 1
+              }
+            ]
+          },
+          {
+            "from": "17:15",
+            "to": "19:30",
+            "playlists": [
+              {
+                "playlist_id": 288,
+                "proportion": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": "friday",
+        "timeZones": [
+          {
+            "from": "1:45",
+            "to": "16:45",
+            "playlists": [
+              {
+                "playlist_id": 1632,
+                "proportion": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": "saturday",
+        "timeZones": []
+      },
+      {
+        "day": "sunday",
+        "timeZones": []
+      }
+    ]
+  }
+}
