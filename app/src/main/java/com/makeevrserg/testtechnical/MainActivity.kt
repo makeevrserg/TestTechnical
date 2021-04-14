@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         progressDialog =
             ProgressDialog.show(this, "Пожалуйста, подождите", "Идёт загрузка музыкального профиля")
-        DownloadTask(this).execute(URL("https://EmpireProjekt.ru/test.json"))
+        DownloadTask(this).execute(URL("https://raw.githubusercontent.com/merrytheberry/TestTechnical/main/test.json"))
     }
 
 
