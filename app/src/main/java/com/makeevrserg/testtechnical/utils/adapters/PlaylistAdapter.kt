@@ -11,6 +11,7 @@ import com.makeevrserg.testtechnical.R
 import utils.Day
 import utils.Profile
 
+//Адаптер RecyclerView'а для Плейлистов в дне
 class PlaylistAdapter(
     private val mContext: Context,
     private val dayVal: Int,
@@ -77,6 +78,7 @@ class PlaylistAdapter(
         viewHolder.textViewProportion.text =
             day.timeZones[position].playlists[day.timeZones[position].activeId].toString()
 
+        //Есть ещё два способоа по приминению clickListener'а в RecyclerView, но этот самый простой
         viewHolder.spinnerPlaylist.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(

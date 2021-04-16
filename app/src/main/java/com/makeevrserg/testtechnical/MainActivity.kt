@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        //Задаем меню
         R.id.action_current_player -> {
             Log.d(TAG, "onOptionsItemSelected: ")
             // User chose the "Settings" item, show the app settings UI...
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             super.onOptionsItemSelected(item)
         }
     }
-
+    //Создаем меню
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.current_player, menu)
         return super.onCreateOptionsMenu(menu)
@@ -76,6 +77,8 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         setSupportActionBar(my_toolbar)
+        //Проверяем что у нас есть интернет-соединение
+        //Нужно было проверить на доступ к записи файлов, но работает и без этого
         val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (!(cm.activeNetworkInfo!=null && cm.activeNetworkInfo.isConnected)){
             Toast.makeText(this, "Нет подключения к интернету", Toast.LENGTH_SHORT).show()

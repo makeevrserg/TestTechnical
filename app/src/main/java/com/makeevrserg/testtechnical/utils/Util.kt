@@ -14,6 +14,7 @@ import java.security.MessageDigest
 import java.sql.Time
 import javax.net.ssl.SSLHandshakeException
 
+
 enum class enumDays(val day: String) {
     MONDAY("Понедельник"),
     TUESDAY("Вторник"),
@@ -23,13 +24,17 @@ enum class enumDays(val day: String) {
     SATURDAY("Суббота"),
     SUNDAY("Воскресенье")
 }
-
+//Класс самого .json - файла, можно было сделать через gson - библиотеку
 class Profile(mId: Int, mName: String) : Serializable {
-
+    //Список плейлистов
     var playlists: MutableList<Playlist> = mutableListOf()
+    //Map для получения плейлиста по id
     var playlistById: HashMap<Int, Playlist> = HashMap()
+    //id профиля
     val id: Int = mId
+    //Имя профиля
     val name: String = mName
+    //Дни, которые есть в этом профиле
     var days: MutableList<Day> = mutableListOf()
     fun GetDays(): MutableList<Day> {
         return days
@@ -38,28 +43,35 @@ class Profile(mId: Int, mName: String) : Serializable {
 
 
 //schedule->playlist_singular
+//Один элемент плейлиста
 class Playlist(cacheDir: String, json: JSONObject) : Serializable {
+    //id плейлиста
     val id: Int = json.getInt("id")
+    //Имя плейлиста
     val name: String = json.getString("name")
+
     val random: Boolean = json.getBoolean("random")
     val files: MutableList<jFile> = mutableListOf()
+    //Если в плейлисте есть неверные файлы, то он сломан
     var hasBroken: Boolean = false // Результат проверки на md5
+
     var fileById: HashMap<Int, jFile> = HashMap()
 
     init {
         println("Playlist ${name} id ${id} random ${random}")
         val jArr = json.getJSONArray("files")
-
+        //Инициализируем массив с файлами
         for (i in 0 until jArr.length()) {
             val file = jArr.get(i)
             val jF: jFile = jFile(file as JSONObject)
             try {
+                //Функция загрузки возвращает true/false с информацией о сломанном аудио
                 jF.broken = !download(cacheDir, jF)
                 println("File ${jF.name} broken=${hasBroken}")
 
-            } catch (e: FileNotFoundException) {//В некоторых файлах из json-файлы не было файлов
+                //Ошибки, которые могут произойти при загрузке файла
+            } catch (e: FileNotFoundException) {
                 e.printStackTrace()
-                //e.printStackTrace()
             } catch (e: ConnectException) {
                 jF.broken = true
             } catch (e:SSLHandshakeException){
@@ -69,9 +81,10 @@ class Playlist(cacheDir: String, json: JSONObject) : Serializable {
             } catch (e:EOFException){
                 jF.broken = true
             }
+            //Если в плейлисте нет сломанных, но файл сломан - плейлист сломан
             if (!hasBroken)
                 hasBroken = jF.broken
-
+            //Если файл не сломан - добавляем его в map файлов
             if (!jF.broken) {
                 fileById[jF.id] = jF
                 files.add(jF)
@@ -98,10 +111,10 @@ class jFile(json: JSONObject) : Serializable {
 }
 
 //schedule->days
+//Элемент конкретного дня
 class Day(json: JSONObject) : Serializable {
     var day: String = json.getString("day")
     val timeZones: MutableList<TimeZone> = mutableListOf()
-
     init {
         val jArr = json.getJSONArray("timeZones")
         for (i in 0 until jArr.length()) {
@@ -110,9 +123,8 @@ class Day(json: JSONObject) : Serializable {
             timeZones.add(timeZone)
         }
     }
-
 }
-
+//Элеемент TimeZon'ы
 class TimeZone(json: JSONObject) : Serializable {
     var from: String = json.getString("from")
     var to: String = json.getString("to")
@@ -169,7 +181,7 @@ fun download(cacheDir: String, file: jFile): Boolean {
     val iStream: InputStream = BufferedInputStream(url.openStream(), fileLength)
     val oStream: OutputStream =
         FileOutputStream(cacheDir + "/" + file.name)
-    val data: ByteArray = ByteArray(1024)
+    val data: ByteArray = ByteArray(1024)//Не нашёл верного ответа, что указывать в аргументе
     var downloadProgress: Long = 0
     var count = iStream.read(data);
     while (count != -1) {

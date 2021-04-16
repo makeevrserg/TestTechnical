@@ -14,6 +14,7 @@ import utils.Day
 import utils.Profile
 import utils.enumDays
 
+//Адаптер RecyclerView'а для дней
 class DayAdapter(private val mContext:Context, private val adapters: MutableList<PlaylistAdapter>) :
     RecyclerView.Adapter<DayAdapter.ViewHolder>() {
 

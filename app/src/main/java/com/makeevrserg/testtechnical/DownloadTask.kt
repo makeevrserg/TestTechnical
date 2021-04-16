@@ -11,13 +11,12 @@ import utils.Profile
 import java.net.URL
 import kotlin.contracts.contract
 
+//Создаем AsyncTask и ждем пока выполнится
 class DownloadTask(activity: MainActivity) : AsyncTask<URL, Int, Profile>() {
     var mActivity = activity
-
-
     override fun doInBackground(vararg params: URL?): Profile? {
         val jsonStr: JSONObject
-
+        //Парсим json, хотя можно было воспользоваться gson
         try {
             jsonStr = JSONObject(params.get(0)!!.readText())
         } catch (e: JSONException) {
@@ -37,6 +36,7 @@ class DownloadTask(activity: MainActivity) : AsyncTask<URL, Int, Profile>() {
             playlists.add(playlist)
         }
 
+
         val profile: Profile = Profile(jsonId, jsonProfileName)
         profile.playlistById = playlistById
 
@@ -49,12 +49,12 @@ class DownloadTask(activity: MainActivity) : AsyncTask<URL, Int, Profile>() {
         profile.playlists = playlists
         return profile
     }
-
+    //Тут можно в progressDialog было вставить название загружаемого трека или их количество
     override fun onProgressUpdate(vararg values: Int?) {
         super.onProgressUpdate(*values)
     }
 
-
+    //По выполнению отключаем Dialog с загрузкой и ставим название профиля
     override fun onPostExecute(result: Profile) {
         super.onPostExecute(result)
         mActivity.SetProfile(result)
