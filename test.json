@@ -114,9 +114,9 @@
         "day": "monday",
         "timeZones": [
           {
-            "from": "22:24",
+            "from": "00:24",
             
-            "to": "22:24",
+            "to": "23:55",
             
             "playlists": [
               {
@@ -128,14 +128,28 @@
             
           },          
           {
-            "from": "10:15",
+            "from": "00:15",
             
-            "to": "23:15",
+            "to": "23:55",
             
             "playlists": [
               {
                 "playlist_id": 1633,
-                "proportion": 4
+                "proportion": 1
+                
+              }
+            ]
+            
+          },          
+          {
+            "from": "22:40",
+            
+            "to": "23:55",
+            
+            "playlists": [
+              {
+                "playlist_id": 1632,
+                "proportion": 1
                 
               }
             ]
