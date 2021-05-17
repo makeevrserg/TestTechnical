@@ -114,9 +114,9 @@
         "day": "monday",
         "timeZones": [
           {
-            "from": "6:15",
+            "from": "22:22",
             
-            "to": "22:15",
+            "to": "22:24",
             
             "playlists": [
               {
